@@ -26,15 +26,15 @@ describe('EquationMaker', () => {
     expect(pi5).toEqual(['3*1+4+1+5', '3+1*4+1+5', '3+1+4*1+5', '3+1+4+1*5', '3+1+4/1+5', '3+14+1-5', '3-1-4+15', '3/1+4+1+5']);
   });
 
-  xtest('Pi 7', () => {
+  xtest('Pi 7', () => { // 1.5s
     expect(new EquationMaker('3141592', 363)).toEqual(['3*1+4*1*5*9*2', '3*1+4/1*5*9*2', '3+1*4*1*5*9*2', '3+1*4/1*5*9*2', '3/1+4*1*5*9*2', '3/1+4/1*5*9*2']);
   });
 
-  xtest('Pi 10', () => {
+  xtest('Pi 10', () => { // 50s
     expect(new EquationMaker('3141592653', 363)).toEqual(pi10);
   });
 
-  xtest('Pi 11', () => {
+  xtest('Pi 11', () => { // 236s
     expect(new EquationMaker('31415926535', 363)).toEqual(pi11);
   });
 

@@ -1,4 +1,5 @@
 /* eslint-disable no-eval */
+const { raw } = String;
 const { baseN } = require('./base-n');
 
 const CONCAT_OPERATOR = '';
@@ -11,12 +12,13 @@ const combineAndEvaluate = (numstr, target) => {
   const expressions = [];
   const betweens = numstr.length - 1;
   const opsBaseN = baseN(OPERATORS, betweens);
-  for (const ops of opsBaseN) {
-    const expr = String.raw({ raw: numstr }, ...ops); // use ...expansion
+  const makeAndTest = (ops) => {
+    const expr = raw({ raw: numstr }, ...ops);
     if (eval(expr) === target) {
       expressions[expressions.length] = expr;
     }
-  }
+  };
+  for (const ops of opsBaseN) makeAndTest(ops); /* eslint-disable-line no-restricted-syntax */
   return expressions.sort();
 };
 

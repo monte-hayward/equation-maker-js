@@ -1,6 +1,6 @@
 {
   "name": "equation-maker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Given a set of numbers and a target value, find all equations that evaluate to that value.",
   "author": "Monte Hayward",
   "private": true,
