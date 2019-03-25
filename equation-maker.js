@@ -11,16 +11,22 @@ const combineAndEvaluate = (numstr, target) => {
   const expressions = [];
   const betweens = numstr.length - 1;
   const opsBaseN = baseN(OPERATORS, betweens);
-  for (const ops of opsBaseN) {
-    const expr = String.raw({ raw: numstr }, ...ops); // use ...expansion
-    if (eval(expr) === target) {
-      expressions[expressions.length] = expr;
+  let ops = { done: false };
+  while (ops.done === false) {
+    ops = opsBaseN.next();
+    if (ops.done === false) {
+      const expr = String.raw({ raw: numstr }, ...ops.value);
+      if (eval(expr) === target) {
+        expressions[expressions.length] = expr;
+      }
     }
   }
   return expressions.sort();
 };
 
-module.exports.EquationMaker = (numstr, target) => {
+const EquationMaker = (numstr, target) => {
   const targetInt = parseInt(target, 10);
   return combineAndEvaluate(numstr, targetInt);
 };
+
+module.exports.EquationMaker = EquationMaker;

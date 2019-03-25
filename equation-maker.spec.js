@@ -1,5 +1,3 @@
-import { outputJsonSync } from 'fs-extra';
-
 import { EquationMaker } from './equation-maker';
 import pi10 from './data/pi-10.json';
 import pi11 from './data/pi-11.json';
@@ -7,7 +5,7 @@ import pi12 from './data/pi-12.json';
 
 
 describe('EquationMaker', () => {
-  test('sum only', () => {
+  xtest('sum only', () => {
     expect(new EquationMaker('456', 15)).toEqual(['4+5+6']);
   });
 
@@ -22,11 +20,10 @@ describe('EquationMaker', () => {
 
   xtest('pi 5', () => {
     const pi5 = new EquationMaker('31415', 13);
-    outputJsonSync('pi-5.json', pi5);
     expect(pi5).toEqual(['3*1+4+1+5', '3+1*4+1+5', '3+1+4*1+5', '3+1+4+1*5', '3+1+4/1+5', '3+14+1-5', '3-1-4+15', '3/1+4+1+5']);
   });
 
-  xtest('Pi 7', () => {
+  test('Pi 7', () => {
     expect(new EquationMaker('3141592', 363)).toEqual(['3*1+4*1*5*9*2', '3*1+4/1*5*9*2', '3+1*4*1*5*9*2', '3+1*4/1*5*9*2', '3/1+4*1*5*9*2', '3/1+4/1*5*9*2']);
   });
 
@@ -38,8 +35,8 @@ describe('EquationMaker', () => {
     expect(new EquationMaker('31415926535', 363)).toEqual(pi11);
   });
 
-  // NOTE: Expect 15-55 min run time!
-  xtest('Pi 12', () => { // '314159265358'
+  // NOTE: Expect 15-30 min run time!
+  xtest('Pi 12', () => {
     expect(new EquationMaker('314159265358', 363)).toEqual(pi12);
   });
 
